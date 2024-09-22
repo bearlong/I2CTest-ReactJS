@@ -1,0 +1,22 @@
+.title {
+    background: transparent;
+    border: none;
+    &:hover {
+        cursor: pointer;
+        background: rgb(33, 37, 41);
+        color: white;
+    }
+}
+
+.myCard {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    border: 1px solid transparent;
+}
+
+
+.show {
+    max-height: 100px;
+    border: 1px solid #ccc;
+  }

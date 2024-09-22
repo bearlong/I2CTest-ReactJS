@@ -16,9 +16,6 @@ export default function Index() {
     }
   }
 
-  useEffect(() => {
-    import('bootstrap/dist/css/bootstrap.min.css')
-  }, [])
   return (
     <>
       <div className="container">

@@ -62,9 +62,6 @@ export async function getStaticProps() {
 }
 
 export default function PostList({ data }) {
-  useEffect(() => {
-    import('bootstrap/dist/css/bootstrap.min.css')
-  }, [])
   return (
     <>
       <div className="container">

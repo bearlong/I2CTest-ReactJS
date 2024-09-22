@@ -119,9 +119,6 @@ export async function getStaticProps({ params }) {
 export default function Detail({ post }) {
   const router = useRouter()
 
-  useEffect(() => {
-    import('bootstrap/dist/css/bootstrap.min.css')
-  }, [])
   if (!post) return <div className="text-danger">文章不存在</div>
   return (
     <>

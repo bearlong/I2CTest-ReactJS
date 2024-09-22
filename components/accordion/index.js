@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import styles from '@/styles/accordion.module.scss'
 
 export default function Accordion({ data = [], initSelect = [] }) {
   const [selected, setSelected] = useState(initSelect)
@@ -7,9 +8,6 @@ export default function Accordion({ data = [], initSelect = [] }) {
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     )
   }
-  useEffect(() => {
-    import('bootstrap/dist/css/bootstrap.min.css')
-  }, [])
 
   useEffect(() => {
     setSelected(initSelect)
@@ -24,18 +22,19 @@ export default function Accordion({ data = [], initSelect = [] }) {
       {data.map((v) => {
         return (
           <div className="mb-3" key={v.id}>
-            <label htmlFor={v.id} className={`title h5`}>
+            <button
+              htmlFor={v.id}
+              className={`${styles.title} h5 ${
+                selected.includes(v.id) ? 'text-light bg-dark bg-gradient' : ''
+              }`}
+              onClick={() => toggleSelected(v.id)}
+            >
               {v.title}
-            </label>
-            <input
-              type="checkbox"
-              className="d-none articleCheck"
-              checked={selected.includes(v.id)}
-              onChange={() => toggleSelected(v.id)}
-              id={v.id}
-            />
+            </button>
             <div
-              className={`card mb-3 ${selected.includes(v.id) ? 'show' : ''}`}
+              className={`card mb-3 ${styles.myCard} ${
+                selected.includes(v.id) ? styles.show : ''
+              }`}
             >
               <div className="card-body">
                 <p className="card-text">{v.content}</p>
@@ -44,20 +43,6 @@ export default function Accordion({ data = [], initSelect = [] }) {
           </div>
         )
       })}
-      <style jsx>
-        {`
-          .card {
-            max-height: 0;
-            overflow: hidden;
-            transition: 0.5s;
-            border: 1px solid transparent;
-          }
-          .show {
-            max-height: 100px;
-            border: 1px solid #ccc;
-          }
-        `}
-      </style>
     </>
   )
 }
